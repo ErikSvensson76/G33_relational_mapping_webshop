@@ -20,16 +20,10 @@ public class CommandLine implements CommandLineRunner {
 	
 	@Autowired
 	public CommandLine(ProductRepository productRepository, ProductCategoryRepository productCategoryRepository) {
-		super();
 		this.productRepository = productRepository;
 		this.productCategoryRepository = productCategoryRepository;
 	}
-
-
-
-
-
-
+	
 	@Override
 	@Transactional
 	public void run(String... args) throws Exception {
