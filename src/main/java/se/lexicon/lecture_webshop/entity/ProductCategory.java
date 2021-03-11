@@ -1,10 +1,20 @@
 package se.lexicon.lecture_webshop.entity;
 
-import org.hibernate.annotations.GenericGenerator;
-
-import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 public class ProductCategory {
@@ -50,6 +60,7 @@ public class ProductCategory {
     }
 
     public Set<Product> getProducts() {
+    	if(products == null) return new HashSet<>();
         return products;
     }
 

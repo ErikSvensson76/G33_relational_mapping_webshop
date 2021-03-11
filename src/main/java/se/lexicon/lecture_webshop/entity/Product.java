@@ -103,4 +103,12 @@ public class Product {
     public int hashCode() {
         return Objects.hash(productId, productName, productPrice);
     }
+
+	@Override
+	public String toString() {
+		return "Product [productId=" + productId + ", productName=" + productName + ", productPrice=" + productPrice
+				+ "]";
+	}
+    
+    
 }
