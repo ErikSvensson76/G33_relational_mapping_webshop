@@ -1,5 +1,6 @@
 package se.lexicon.lecture_webshop.entity;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import se.lexicon.lecture_webshop.misc.OrderStatus;
 
@@ -17,6 +18,7 @@ public class ShoppingOrder {
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private String orderId;
+    @CreationTimestamp
     private LocalDateTime timeStamp;
     private BigDecimal priceTotal;
     private OrderStatus orderStatus;
