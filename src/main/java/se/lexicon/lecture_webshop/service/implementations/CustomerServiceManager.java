@@ -13,7 +13,6 @@ import se.lexicon.lecture_webshop.entity.Address;
 import se.lexicon.lecture_webshop.entity.AppUser;
 import se.lexicon.lecture_webshop.entity.Customer;
 import se.lexicon.lecture_webshop.exception.AppResourceNotFoundException;
-import se.lexicon.lecture_webshop.service.interfaces.AddressService;
 import se.lexicon.lecture_webshop.service.interfaces.CustomerService;
 
 import java.util.ArrayList;
