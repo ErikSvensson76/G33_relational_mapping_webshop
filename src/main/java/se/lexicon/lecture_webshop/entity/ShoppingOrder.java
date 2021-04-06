@@ -1,6 +1,5 @@
 package se.lexicon.lecture_webshop.entity;
 
-import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import se.lexicon.lecture_webshop.misc.OrderStatus;
 
@@ -18,7 +17,6 @@ public class ShoppingOrder {
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private String orderId;
-    @CreationTimestamp
     private LocalDateTime timeStamp;
     private BigDecimal priceTotal;
     private OrderStatus orderStatus;
@@ -41,6 +39,14 @@ public class ShoppingOrder {
         this.orderStatus = orderStatus;
         this.customer = customer;
         setOrderItems(orderItems);
+    }
+
+    public ShoppingOrder(OrderStatus orderStatus, Customer customer, Collection<OrderItem> orderItems) {
+        this(null, null, null, orderStatus, customer, orderItems);
+    }
+
+    public ShoppingOrder(OrderStatus orderStatus, Customer customer) {
+        this(orderStatus, customer, null);
     }
 
     public ShoppingOrder() {
@@ -164,5 +170,6 @@ public class ShoppingOrder {
                 this.priceTotal = this.priceTotal.add(item.getItemPrice());
             }
         }
+        timeStamp = LocalDateTime.now();
     }
 }
