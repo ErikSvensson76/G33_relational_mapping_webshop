@@ -163,7 +163,7 @@ public class ShoppingOrder {
     }
 
     @PrePersist
-    private void prePersist(){
+    void prePersist(){
         if(this.orderItems != null){
             if(this.priceTotal == null) this.priceTotal = BigDecimal.ZERO;
             for(OrderItem item : this.orderItems){
@@ -171,5 +171,15 @@ public class ShoppingOrder {
             }
         }
         timeStamp = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    void preUpdate(){
+        if(this.orderItems != null){
+            if(this.priceTotal == null) this.priceTotal = BigDecimal.ZERO;
+            for(OrderItem item : this.orderItems){
+                this.priceTotal = this.priceTotal.add(item.getItemPrice());
+            }
+        }
     }
 }
