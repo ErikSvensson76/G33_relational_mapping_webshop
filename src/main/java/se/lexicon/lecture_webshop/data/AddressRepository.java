@@ -7,6 +7,7 @@ import se.lexicon.lecture_webshop.dto.AddressWithoutCountry;
 import se.lexicon.lecture_webshop.entity.Address;
 
 import java.util.Collection;
+import java.util.Optional;
 
 public interface AddressRepository extends CrudRepository<Address, String> {
 
@@ -20,6 +21,9 @@ public interface AddressRepository extends CrudRepository<Address, String> {
 
     @Query("SELECT new "+ADDRESS_WITHOUT_COUNTRY+" FROM Address a")
     Collection<AddressWithoutCountry> findAllAddresses();
+
+    @Query("SELECT a FROM Address a WHERE UPPER(a.street) = UPPER(:street) AND UPPER(a.zipCode) = UPPER(:zipCode) AND UPPER(a.city) = UPPER(:city) AND UPPER(a.country) = UPPER(:country)")
+    Optional<Address> findAddressBy(@Param("street") String street, @Param("zipCode") String zipCode, @Param("city") String city, @Param("country") String country);
 
 
 }
