@@ -111,7 +111,7 @@ public class ShoppingOrder {
 
     public void addOrderItems(OrderItem...items){
         if(orderItems == null) orderItems = new ArrayList<>();
-        if(items != null){
+        if(items.length > 0){
             for(OrderItem item : items){
                 if(!orderItems.contains(item)){
                     orderItems.add(item);
@@ -123,7 +123,7 @@ public class ShoppingOrder {
 
     public void removeOrderItems(OrderItem...items){
         if(orderItems == null) orderItems = new ArrayList<>();
-        if(items != null){
+        if(items.length > 0){
             for(OrderItem item : items){
                 if(orderItems.contains(item)){
                     orderItems.remove(item);

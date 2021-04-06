@@ -20,7 +20,7 @@ public class Product {
     private BigDecimal productPrice;
 
     @ManyToMany(
-            cascade = {CascadeType.DETACH, CascadeType.REFRESH},
+            cascade = {CascadeType.DETACH, CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE},
             fetch = FetchType.LAZY
     )
     @JoinTable(
@@ -61,7 +61,7 @@ public class Product {
     }
 
     public Set<ProductCategory> getCategories() {
-        if(this.categories == null) return new HashSet<>();
+        if(this.categories == null) categories = new HashSet<>();
         return categories;
     }
 
@@ -71,7 +71,7 @@ public class Product {
 
     public void addCategories(ProductCategory...categories){
         if(this.categories == null) this.categories = new HashSet<>();
-        if(categories != null){
+        if(categories.length > 0){
             for(ProductCategory category : categories){
                 if(this.categories.add(category)){
                     category.getProducts().add(this);
@@ -82,7 +82,7 @@ public class Product {
 
     public void removeCategories(ProductCategory...categories){
         if(this.categories == null) this.categories = new HashSet<>();
-        if(categories != null){
+        if(categories.length > 0){
             for(ProductCategory category : categories){
                 if(this.categories.remove(category)){
                     category.getProducts().remove(this);

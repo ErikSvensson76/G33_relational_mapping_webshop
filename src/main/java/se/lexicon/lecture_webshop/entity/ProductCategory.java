@@ -29,12 +29,8 @@ public class ProductCategory {
 
     @ManyToMany(
             cascade = {CascadeType.DETACH, CascadeType.REFRESH},
-            fetch = FetchType.LAZY
-    )
-    @JoinTable(
-            name = "product_product_category",
-            joinColumns = @JoinColumn(name = "category_id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id")
+            fetch = FetchType.LAZY,
+            mappedBy = "categories"
     )
     private Set<Product> products;
 
