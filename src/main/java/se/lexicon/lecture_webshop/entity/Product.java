@@ -66,6 +66,18 @@ public class Product {
     }
 
     public void setCategories(Set<ProductCategory> categories) {
+        if(categories == null) categories = new HashSet<>();
+        if(categories.isEmpty()){
+            if(this.categories != null){
+                for(ProductCategory category : this.categories){
+                    category.getProducts().remove(this);
+                }
+            }
+        }else{
+            for(ProductCategory productCategory : categories){
+                productCategory.getProducts().add(this);
+            }
+        }
         this.categories = categories;
     }
 
