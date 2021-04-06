@@ -110,13 +110,23 @@ public class ProductServiceManager implements ProductService {
     @Override
     @Transactional(readOnly = true)
     public Collection<ProductDTO> findByCategoryName(String categoryName) {
-        return null;
+        Collection<Product> productList = productRepository.findByCategoriesValueIgnoreCase(categoryName);
+        Collection<ProductDTO> productDTOS = new ArrayList<>();
+        for(Product product : productList){
+            productDTOS.add(modelMapper.map(product, ProductDTO.class));
+        }
+        return productDTOS;
     }
 
     @Override
     @Transactional(readOnly = true)
     public Collection<ProductDTO> findByProductName(String productName) {
-        return null;
+        Collection<Product> products = productRepository.findByName(productName);
+        Collection<ProductDTO> productDTOS = new ArrayList<>();
+        for(Product product : products){
+            productDTOS.add(modelMapper.map(product, ProductDTO.class));
+        }
+        return productDTOS;
     }
 
     @Override
