@@ -45,7 +45,7 @@ public class ProductController {
             case "all":
                 return ResponseEntity.ok(productService.findAll());
             default:
-                throw new IllegalArgumentException("Invalid search type: " + search);
+                throw new IllegalArgumentException("Invalid search type: " + search + ". Valid search types are 'category_name' and 'product_name'");
         }
     }
 
